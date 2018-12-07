@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 
 class Hint extends Component {
   render() {
+    const {show, roundData} = this.props;
+    const {albumArtwork} = roundData;
     return (
       <div className="hint">
-        This is the hint field
+        {show ? 
+        <img src={albumArtwork} /> :
+        'no hint'}
       </div>
     );
   }

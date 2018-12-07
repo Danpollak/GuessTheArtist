@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 
 class Score extends Component {
   render() {
+    const {score} = this.props;
     return (
       <div className="score">
-        This is the score display
+      {`Score: ${score}`}
       </div>
     );
   }

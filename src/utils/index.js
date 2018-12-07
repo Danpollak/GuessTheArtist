@@ -1,10 +1,10 @@
-import {ARTISTS_NAMES} from '../constants';
 import axios from 'axios';
 import {get} from 'lodash';
+import {POINTS_NO_STRIKES, POINTS_1_STRIKES, POINTS_2_STRIKES, ARTISTS_NAMES} from '../constants';
 
-export const getQuizData = async () => {
+export const getQuizData = async (numOfRounds) => {
     // choose 3 random artists
-    let artists = getRandomElements(ARTISTS_NAMES,5);
+    let artists = getRandomElements(ARTISTS_NAMES,numOfRounds);
     let quizData = [];
     let albumRequests = [];
     
@@ -28,6 +28,15 @@ export const getQuizData = async () => {
     });
     await Promise.all(albumRequests);
     return quizData;
+}
+
+export const getPointsByStrikes = (strikes) => {
+    switch(strikes){
+        case 0: return POINTS_NO_STRIKES;
+        case 1: return POINTS_1_STRIKES;
+        case 2: return POINTS_2_STRIKES;
+        default: return 1;
+    }
 }
 
 function getQueryURL (artist) {
