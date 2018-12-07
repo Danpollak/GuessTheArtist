@@ -1,4 +1,4 @@
-export const artistNames = [
+export const ARTISTS_NAMES = [
     "Radiohead",
     "The Rolling Stones",
     "Led Zeppelin",

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Score extends Component {
   render() {
     return (
-      <div className="answer">
+      <div className="score">
         This is the score display
       </div>
     );

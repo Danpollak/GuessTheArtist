@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Hint extends Component {
   render() {
     return (
-      <div className="answer">
+      <div className="hint">
         This is the hint field
       </div>
     );

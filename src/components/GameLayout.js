@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {artistNames} from '../constants';
 import AlbumsLayout from './AlbumsLayout';
 import Answer from './Answer';
+import Hint from './Hint';
+import Score from './Score';
+import {startGame} from '../utils';
 
 class GameLayout extends Component {
 
@@ -11,11 +13,13 @@ class GameLayout extends Component {
     }
 
   render() {
-      console.log(artistNames);
+    startGame();
     return (
       <div className="gameLayout">
         <AlbumsLayout/>
         <Answer/>
+        <Hint/>
+        <Score/>
       </div>
     );
   }
