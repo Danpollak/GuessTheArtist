@@ -2,7 +2,7 @@ import {ARTISTS_NAMES} from '../constants';
 import axios from 'axios';
 import {get} from 'lodash';
 
-export const startGame = () => {
+export const getQuizData = async () => {
     // choose 3 random artists
     let artists = getRandomElements(ARTISTS_NAMES,5);
     let quizData = [];
@@ -19,17 +19,15 @@ export const startGame = () => {
                     const chosenAlbums = getRandomElements(albums, 3);
                     const albumArtwork = chosenAlbums[0].artworkUrl60;
                     const chosenAlbumsNames = chosenAlbums.map((album) =>  album.collectionName);
-                    quizData.push({albumNames:chosenAlbumsNames, albumArtwork});
+                    quizData.push({albumNames:chosenAlbumsNames, albumArtwork, artist});
                 }
             }
             // TODO: Handle no res
         });
         albumRequests.push(albumRequest);
     });
-    Promise.all(albumRequests).then(() => {
-        console.log(quizData);
-        //TODO: send event that game can start
-    });
+    await Promise.all(albumRequests);
+    return quizData;
 }
 
 function getQueryURL (artist) {

@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 
 class Album extends Component {
   render() {
+    const {albumName, show} = this.props;
     return (
       <div className="album">
-      This is an album
+      {show ? albumName : 'none'}
       </div>
     );
   }
