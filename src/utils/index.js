@@ -17,7 +17,7 @@ export const getQuizData = async (numOfRounds) => {
                 const albums = get(res, 'data.results',null);
                 if(albums){
                     const chosenAlbums = getRandomElements(albums, 3);
-                    const albumArtwork = chosenAlbums[0].artworkUrl60;
+                    const albumArtwork = chosenAlbums[0].artworkUrl100;
                     const chosenAlbumsNames = chosenAlbums.map((album) =>  album.collectionName);
                     quizData.push({albumNames:chosenAlbumsNames, albumArtwork, artist});
                 }

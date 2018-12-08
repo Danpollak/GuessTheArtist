@@ -5,7 +5,7 @@ class Album extends Component {
     const {albumName, show} = this.props;
     return (
       <div className="album">
-      {show ? albumName : 'none'}
+      {show ? albumName : '?'}
       </div>
     );
   }

@@ -30,7 +30,7 @@ class Answer extends Component {
           <br/>
           <textarea className="guessinput" rows="1" cols="30"  value={this.state.guess} onChange={this.handleChange.bind(this)}/>
           <br/>
-          <button className="submitbutton" onClick={this.checkAnswer.bind(this)}>🎵 Hit me with your best shot 🎵</button>
+          <button className="submitbutton" onClick={this.checkAnswer.bind(this)}> Hit me with your best shot </button>
       </div>
     );
   }

@@ -7,6 +7,8 @@ class AlbumsLayout extends Component {
     const {albumNames} = roundData;
     return (
       <div className="albumslayout">
+        Albums:
+        <br/>
         <Album albumName={albumNames[0]} show={true}/>
         <Album albumName={albumNames[1]} show={strikes > 0}/>
         <Album albumName={albumNames[2]} show={strikes > 1}/>

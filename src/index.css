@@ -6,7 +6,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: aquamarine ;
+  background-color: #2b3595 ;
+  font-family: 'Bungee', cursive;
+  color: #d7d7d7;
+  font-size: 1.5em;
+
 }
 
 code {
@@ -16,10 +20,14 @@ code {
 
 .gametitle {
   text-align: center;
-  padding-bottom: 5%;
+  font-family: 'Bungee Shade', cursive;
+  padding-bottom: 20px;
+  font-size: 4em;
+  background-color: #e14594
 }
 
 .gamelayout {
+  padding-top: 15px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -38,25 +46,37 @@ code {
   padding: 20px;
   display:inline-block;
   border-style: solid;
+  border-color: #7045af;
   width: 70%;
-  background-color: white;
-}
+  background-color: #182952;
+  font-size: 0.7em;
 
-/* TODO: Choose Colors for hover effect, maybe add animation */
-.album:hover {
-  background-color: yellow;
+
 }
 
 .answer {
   vertical-align: super;
+  margin: 5px;
+  margin-bottom: 15px;
+  font-family: 'Bungee', cursive;
 }
 
 .guessinput {
   height: 40px;
   resize: none;
   overflow: hidden;
-  font-size: 30px;
+  font-size: 1.5em;
   margin: 10px;
+  font-family: 'IBM Plex Sans', sans-serif;
+
+}
+
+.hintimage {
+  vertical-align: middle;
+  border-style: solid;
+  border-width: 2px;
+  height:100px;
+  width:100px;
 }
 
 /* generated submit button */
@@ -65,25 +85,18 @@ code {
   text-align: center;
   vertical-align: middle;
   padding: 12px 24px;
-  border: 1px solid #8b8b8b;
+  border: 1px solid #7045af;
   border-radius: 8px;
-  background: #e5e5e5;
-  background: -webkit-gradient(linear, left top, left bottom, from(#e5e5e5), to(#8b8b8b));
-  background: -moz-linear-gradient(top, #e5e5e5, #8b8b8b);
-  background: linear-gradient(to bottom, #e5e5e5, #8b8b8b);
+  background: #7045af;
   text-shadow: #646464 1px 1px 1px;
   font: normal normal bold 20px arial;
-  color: #ffffff;
+  color: #d7d7d7;
   text-decoration: none;
+  font-family: 'Bungee', cursive;
 }
 .submitbutton:hover,
 .submitbutton:focus {
-  border: 1px solid #c7c7c7;
-  background: #ffffff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#a7a7a7));
-  background: -moz-linear-gradient(top, #ffffff, #a7a7a7);
-  background: linear-gradient(to bottom, #ffffff, #a7a7a7);
-  color: #ffffff;
+  background: #e14594;
   text-decoration: none;
 }
 .submitbutton:active {
