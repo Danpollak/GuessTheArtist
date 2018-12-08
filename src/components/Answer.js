@@ -14,10 +14,8 @@ class Answer extends Component {
     const correctAnswer = roundData.artist;
     const {guess} = this.state;
     if(guess === correctAnswer){
-      console.log("yes!")
       correctGuess();
     } else {
-      console.log("no!", correctAnswer, guess);
       incorrectGuess();
     }
     this.setState({guess: ''});
@@ -26,7 +24,9 @@ class Answer extends Component {
     const {points} = this.props;
     return (
       <div className="answer">
-          {`For ${points} points:`}
+            {`For ${points} points:`}
+            <br/>
+            Who is the artist?
           <br/>
           <input type='text' className="guessinput" value={this.state.guess} onChange={this.handleChange.bind(this)}/>
           <br/>

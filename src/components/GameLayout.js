@@ -16,7 +16,9 @@ class GameLayout extends Component {
           quizData: {},
           strikes: 0,
           score:0, 
-          hasEnded: false};
+          hasEnded: false,
+          roundScores: [-1,-1,-1,-1,-1]
+        };
     }
 
     componentWillMount() {
@@ -37,17 +39,19 @@ class GameLayout extends Component {
     }
 
     correctGuess() {
-      const {strikes, score} = this.state;
+      const {strikes, score, round} = this.state;
       // update points
       const pointsAwarded = getPointsByStrikes(strikes);
+      this.updateRoundScore(round,pointsAwarded);
       this.setState({score: score+pointsAwarded});
       // advance round
       this.advanceRound();
     }
 
     incorrectGuess() {
-      const {strikes} = this.state;
+      const {strikes, round} = this.state;
       if(strikes === MAX_STRIKES-1){
+        this.updateRoundScore(round,0);
         this.advanceRound();
       }
       else {
@@ -55,11 +59,18 @@ class GameLayout extends Component {
       }
     }
 
+    updateRoundScore(round, points) {
+      const {roundScores} = this.state;
+      let newScores = roundScores.slice();
+      newScores[round-1] = points;
+      this.setState({roundScores: newScores})
+    }
+
     shouldShowHint() {
       return this.state.strikes === 2;
     }
   render() {
-    const {loaded, quizData,round, strikes, score, hasEnded} = this.state;
+    const {loaded, quizData,round, strikes, score, hasEnded, roundScores} = this.state;
     if(!loaded){
       // TODO: Add loading page
       return null;
@@ -71,7 +82,7 @@ class GameLayout extends Component {
     const shouldShowHint = this.shouldShowHint();
     return (
       [<div className="gamelayout">
-        <AlbumsLayout roundData={roundData} strikes={strikes}/>
+        <AlbumsLayout roundData={roundData} round={round} roundScores={roundScores} strikes={strikes}/>
         <div className="submitpanel">
           <Answer
             roundData={roundData}

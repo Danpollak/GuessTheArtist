@@ -86,6 +86,10 @@ code {
   margin-top: 20px;
 }
 
+.roundcounter { 
+  text-align: center;
+}
+
 /* generated submit button */
 .submitbutton {
   display: inline-block;
