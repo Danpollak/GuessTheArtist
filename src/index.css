@@ -90,6 +90,10 @@ code {
   text-align: center;
 }
 
+.roundCircle {
+  margin-right: 15px;
+}
+
 /* generated submit button */
 .submitbutton {
   display: inline-block;

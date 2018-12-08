@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class RoundCounter extends Component {
-  createRound(val) {
+  createRound(val, roundNum) {
     let color = '#fff';
     if(val >= 0) {
       if(val === 0){
@@ -11,15 +11,15 @@ class RoundCounter extends Component {
         color = '#0d0';
       }
     }
-    return (<svg height="60" width="60">
-    <circle cx="20" cy="20" r="20" stroke="black" stroke-width="3" fill={color} />
+    return (<svg height="40" width="40" className='roundCircle' key={`roundCircle${roundNum}`}>
+    <circle cx="20" cy="20" r="18" stroke="#d7d7d7" strokeWidth="3" fill={color} />
     </svg>)
   }
   render() {
     const {roundScores} = this.props;
     return (
       <div className="roundcounter"> 
-      {roundScores.map((round) => this.createRound(round))}
+      {roundScores.map((round,i) => this.createRound(round,i))}
       </div>
     );
   }

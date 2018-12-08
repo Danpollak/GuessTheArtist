@@ -26,7 +26,11 @@ class GameLayout extends Component {
     }
 
     startGame(quizData) {
-      this.setState({loaded: true, quizData, round:1, strikes: 0});
+      if(!quizData){
+        this.setState({failedToLoad: true});
+      } else {
+        this.setState({loaded: true, quizData, round:1, strikes: 0});
+      }
     }
 
     advanceRound() {
@@ -70,10 +74,13 @@ class GameLayout extends Component {
       return this.state.strikes === 2;
     }
   render() {
-    const {loaded, quizData,round, strikes, score, hasEnded, roundScores} = this.state;
+    const {loaded, quizData,round, strikes, score, hasEnded, roundScores, failedToLoad} = this.state;
     if(!loaded){
-      // TODO: Add loading page
-      return null;
+      return (
+        <div className='gamelayout'>
+          {failedToLoad ? 'Failed to load game. Refresh the page' : 'Loading Game...'}
+        </div>
+      )
     }
     if(hasEnded){
       return (<Score score={score} hasEnded={hasEnded}/>)
@@ -81,7 +88,7 @@ class GameLayout extends Component {
     const roundData = quizData[round-1];
     const shouldShowHint = this.shouldShowHint();
     return (
-      [<div className="gamelayout">
+      [<div key='gamelayout' className="gamelayout">
         <AlbumsLayout roundData={roundData} round={round} roundScores={roundScores} strikes={strikes}/>
         <div className="submitpanel">
           <Answer
@@ -93,7 +100,7 @@ class GameLayout extends Component {
           <Hint roundData={roundData} show={shouldShowHint}/>
         </div>
       </div>,
-        <Score score={score} hasEnded={hasEnded}/>
+        <Score key='score' score={score} hasEnded={hasEnded}/>
     ]
     );
   }

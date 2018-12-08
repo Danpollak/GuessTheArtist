@@ -3,7 +3,7 @@ import {get} from 'lodash';
 import {POINTS_NO_STRIKES, POINTS_1_STRIKES, POINTS_2_STRIKES, ARTISTS_NAMES} from '../constants';
 
 export const getQuizData = async (numOfRounds) => {
-    // choose 3 random artists
+    
     let artists = getRandomElements(ARTISTS_NAMES,numOfRounds);
     let quizData = [];
     let albumRequests = [];
@@ -13,20 +13,24 @@ export const getQuizData = async (numOfRounds) => {
         const albumRequest = axios.get(queryURL).then((res) => {
             if(res)
             {
-                //TODO: Handle artist with less than 3 albums / no albums
                 const albums = get(res, 'data.results',null);
                 if(albums){
+                    if(albums.length < 3){
+                        return null;
+                    }
                     const chosenAlbums = getRandomElements(albums, 3);
                     const albumArtwork = chosenAlbums[0].artworkUrl100;
                     const chosenAlbumsNames = chosenAlbums.map((album) =>  album.collectionName);
                     quizData.push({albumNames:chosenAlbumsNames, albumArtwork, artist});
                 }
             }
-            // TODO: Handle no res
-        });
+        }).catch((err)=> console.error(`Failed to fetch albums`, err));
         albumRequests.push(albumRequest);
     });
     await Promise.all(albumRequests);
+    if(quizData.length < numOfRounds){
+        return null;
+    }
     return quizData;
 }
 

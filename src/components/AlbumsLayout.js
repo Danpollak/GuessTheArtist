@@ -3,17 +3,21 @@ import RoundCounter from './RoundCounter';
 import Album from './Album';
 
 class AlbumsLayout extends Component {
+  generateAlbums() {
+    const {roundData, strikes} = this.props;
+    const {albumNames} = roundData;
+    return albumNames.map((name, i) => {
+      return <Album key={name} albumName={name} show={strikes > i-1}/>
+    }) 
+  }
   render() {
     const {roundData, strikes, round, roundScores} = this.props;
-    const {albumNames} = roundData;
     return (
       <div className="albumslayout">
-        <RoundCounter roundScores={roundScores} />
+        <RoundCounter key='counter' roundScores={roundScores} />
         {`Round ${round}`}
         <br/>
-        <Album albumName={albumNames[0]} show={true}/>
-        <Album albumName={albumNames[1]} show={strikes > 0}/>
-        <Album albumName={albumNames[2]} show={strikes > 1}/>
+        {this.generateAlbums()}
       </div>
     );
   }
