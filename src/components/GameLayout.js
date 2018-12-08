@@ -59,10 +59,13 @@ class GameLayout extends Component {
       return this.state.strikes === 2;
     }
   render() {
-    const {loaded, quizData,round, strikes, score} = this.state;
+    const {loaded, quizData,round, strikes, score, hasEnded} = this.state;
     if(!loaded){
       // TODO: Add loading page
       return null;
+    }
+    if(hasEnded){
+      return (<Score score={score} hasEnded={hasEnded}/>)
     }
     const roundData = quizData[round-1];
     const shouldShowHint = this.shouldShowHint();
@@ -79,7 +82,7 @@ class GameLayout extends Component {
           <Hint roundData={roundData} show={shouldShowHint}/>
         </div>
       </div>,
-        <Score score={score}/>
+        <Score score={score} hasEnded={hasEnded}/>
     ]
     );
   }

@@ -28,7 +28,7 @@ class Answer extends Component {
       <div className="answer">
           {`For ${points} points:`}
           <br/>
-          <textarea className="guessinput" rows="1" cols="30"  value={this.state.guess} onChange={this.handleChange.bind(this)}/>
+          <input type='text' className="guessinput" value={this.state.guess} onChange={this.handleChange.bind(this)}/>
           <br/>
           <button className="submitbutton" onClick={this.checkAnswer.bind(this)}> Hit me with your best shot </button>
       </div>
