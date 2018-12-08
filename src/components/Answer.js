@@ -20,12 +20,17 @@ class Answer extends Component {
       console.log("no!", correctAnswer, guess);
       incorrectGuess();
     }
+    this.setState({guess: ''});
     }
   render() {
+    const {points} = this.props;
     return (
       <div className="answer">
-          <input type='text' name='guess' value={this.state.guess} onChange={this.handleChange.bind(this)}/>
-          <button onClick={this.checkAnswer.bind(this)}>Check Me!</button>
+          {`For ${points} points:`}
+          <br/>
+          <textarea className="guessinput" rows="1" cols="30"  value={this.state.guess} onChange={this.handleChange.bind(this)}/>
+          <br/>
+          <button className="submitbutton" onClick={this.checkAnswer.bind(this)}>🎵 Hit me with your best shot 🎵</button>
       </div>
     );
   }

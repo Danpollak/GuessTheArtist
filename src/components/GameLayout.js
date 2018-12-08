@@ -67,16 +67,20 @@ class GameLayout extends Component {
     const roundData = quizData[round-1];
     const shouldShowHint = this.shouldShowHint();
     return (
-      <div className="gameLayout">
+      [<div className="gamelayout">
         <AlbumsLayout roundData={roundData} strikes={strikes}/>
-        <Answer
-          roundData={roundData}
-          correctGuess={this.correctGuess.bind(this)}
-          incorrectGuess={this.incorrectGuess.bind(this)}
-        />
-        <Hint roundData={roundData} show={shouldShowHint}/>
+        <div className="submitpanel">
+          <Answer
+            roundData={roundData}
+            correctGuess={this.correctGuess.bind(this)}
+            incorrectGuess={this.incorrectGuess.bind(this)}
+            points={getPointsByStrikes(strikes)}
+          />
+          <Hint roundData={roundData} show={shouldShowHint}/>
+        </div>
+      </div>,
         <Score score={score}/>
-      </div>
+    ]
     );
   }
 }
